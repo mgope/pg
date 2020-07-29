@@ -52,18 +52,20 @@ class RoomController extends Controller
         $room->address = $request->address;
 
         if ($request->hasfile('image')) {
+
             foreach ($request->image as $image) {
-                $filename[]= $image->getClientOriginalName();
-                // $image->storeAs('images', $filename, 'public');
+                $filename= $image->getClientOriginalName();
+                $image->storeAs('images', $filename, 'public');
+                $originalNameArray[]= $image->getClientOriginalName();
             }
-            
-            $imageStore = implode(" ",$filename);
-            
-            $room->image = $imageStore;
-            $room->save();
+            $imageStore = implode(" ",$originalNameArray);
+
         }
+
+        $room->image = $imageStore;
+        $room->save();
         
-        // return redirect('/home/rooms');
+        return redirect('/home/rooms');
     }
    
 
