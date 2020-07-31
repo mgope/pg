@@ -23,3 +23,11 @@ Route::get('/home/rooms/room/{id}', 'RoomController@roomDetails');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/search?filter[address]={address}', 'RoomController@try');
+Route::get('/search', 'RoomController@try');
+Route::get('/search_result', 'RoomController@search');
+
+// Route::get('/search_result', function () {
+//     return view('search_result');
+// });
