@@ -18,6 +18,16 @@
 <body>
     <div class="container">
         <div class="row">
+            <div class="search mx-auto">
+                <form action="/search_result" method="get">
+                    <input type="text" name="filter[address]" id="address">
+                    <input type="submit" value="Search" name="search">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
             @foreach ($rooms as $room)
             <div class="card m-2 d-flex justify-content-center" style="width:22%">
                 <div class="thumbnail_index">
