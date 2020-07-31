@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Room;
+use Spatie\QueryBuilder\QueryBuilder;
 
 use Illuminate\Http\UploadedFile;
 
@@ -17,6 +18,7 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::all();
+        // dd($rooms);
         return view('index')->with(['rooms'=>$rooms]);
     }
 
@@ -120,4 +122,16 @@ class RoomController extends Controller
         $room =Room::find($id);
         return view('roomDetails', compact('room'));
     }
+
+    public function search()
+    {
+            $rooms = QueryBuilder::for(Room::class)
+                ->allowedFilters(['address'])
+                ->get();
+                // dd($place);
+        return view('index')->with(['rooms'=>$rooms]);
+        
+    }
+
+   
 }
